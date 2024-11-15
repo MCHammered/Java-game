@@ -115,7 +115,7 @@ public class igra {
     private void displaySequence(){
             
         // po 500 milisekund pozenemo akcijo
-        Timer timer = new Timer(1000, new ActionListener() {
+        Timer timer = new Timer(600, new ActionListener() {
             private int index = 0; 
 
             @Override
@@ -125,7 +125,7 @@ public class igra {
                     arr.get(index-1).button.setBackground(null);
                 }
                 // spremenimo barvo gumba v i-tem zaporedju
-                else if (index < arr.size()) {
+                if (index < arr.size()) {
                     Color colr = arr.get(index).color;
                     arr.get(index).button.setBackground(colr);
                     index++;
