@@ -78,7 +78,7 @@ public class igra {
             button.setBackground(color);
 
             // ponastavimo barvo gumba 
-            Timer timer = new Timer(500, new ActionListener() {
+            Timer timer = new Timer(400, new ActionListener() {
                 
                 @Override
                 public void actionPerformed(ActionEvent evt) {
@@ -115,20 +115,33 @@ public class igra {
     private void displaySequence(){
             
         // po 500 milisekund pozenemo akcijo
-        Timer timer = new Timer(600, new ActionListener() {
-            private int index = 0; 
+        Timer timer = new Timer(400, new ActionListener() {
+            private int index = 0;
+            private boolean adjacent = true;
 
             @Override
             public void actionPerformed(ActionEvent e) {
                 // ponastavimo barvo gumba v (i-1)-tem zaporedju
+                /* 
                 if (index > 0) {
                     arr.get(index-1).button.setBackground(null);
                 }
+                */
+
                 // spremenimo barvo gumba v i-tem zaporedju
                 if (index < arr.size()) {
-                    Color colr = arr.get(index).color;
-                    arr.get(index).button.setBackground(colr);
-                    index++;
+
+                    if(adjacent){
+                        Color colr = arr.get(index).color;
+                        arr.get(index).button.setBackground(colr);
+                        adjacent = false;
+                    }
+                    else{
+                        arr.get(index).button.setBackground(null);
+                        adjacent = true;
+                        index++;
+                    }
+                    
                 } else {
                     // zakljucimo z akcijo, ko so vsi gumbi v zaporedju prikazani
                     ((Timer) e.getSource()).stop();
